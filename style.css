@@ -25,7 +25,7 @@ body {
     gap: 8px;
     margin-bottom: 16px;
 }
-.admin textarea {
+.admin textarea, .admin input[type=text] {
     width:50%;
     background:#343639;
     color:white;
@@ -38,7 +38,7 @@ body {
     line-height: 14px;
     height: 32px;
 }
-.admin textarea:focus {
+.admin textarea:focus, .admin input[type=text]:focus {
     outline-offset: 0px;
     border: 1px solid #fff;
 }

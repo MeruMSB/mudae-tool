@@ -40,12 +40,12 @@
                 gap: 8px;
             }
             .pic-list {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                display: flex;
+                flex-wrap: wrap;
                 grid-gap: 5px;
             }
             .pic-list li.pic-content {
-                width: 238px;
+                min-width: 238px;
                 background:#2B2D31;
                 border-radius: 5px;
                 padding: 10px 20px 20px;
@@ -194,11 +194,12 @@
                     show_alert(5000, "<strong>"+command_detected[0]+"</strong> detected!<br/><br/>You need to send the command in your Mudae channel, then copy the result Mudae sent you via DM and paste it into the tool.");
                 }
             
-                let re = new RegExp(/(?: - |\. |^)(?=https:\/\/|\<https:\/\/)/, "g");
+                let re = new RegExp(/(?: - |\. |^)(?=https:\/\/|\<https:\/\/)(.*?)(?: - |$)/, "g");
                 textarea_value = textarea_value.split(/\r?\n|\r|\n/g)
                     .filter(s => s.trim().match(re))
                     .map(s => {
                         let parts = s.trim().split(re);
+                        console.log(parts);
                         if(parts.length==1) {
                             if(parts[0].includes("mudae.net")) {
                                 parts = [
