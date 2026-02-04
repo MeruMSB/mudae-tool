@@ -58,6 +58,7 @@
                 justify-content: space-between;
                 align-items: center;
                 margin-bottom: 8px;
+                width: 225px;
             }
             .pic-list li .pic-index {
                 font-weight: 600;
@@ -199,35 +200,17 @@
                     .filter(s => s.trim().match(re))
                     .map(s => {
                         let parts = s.trim().split(re);
-                        if(parts.length==1) {
-                            if(parts[0].includes("mudae.net")) {
-                                parts = [
-                                    parts[0].match(/(?<=~)[^\.]+/)[0],
-                                    parts[0]
-                                ];
-                            } else if(parts[0].includes("i.imgur.com") || parts[0].includes("imgchest.com")) {
-                                parts = [
-                                    parts[0].match(/\/([^\/]+)\.[^\/]+$/)[1],
-                                    parts[0]
-                                ];
-                            } else if(parts[0].includes("imgur.com")) {
-                                parts = [
-                                    parts[0].match(/\/([^\/]+)+$/)[1],
-                                ];
-                                parts.push('https://i.imgur.com/'+parts[0]+'.png')
-                            } else {
-                                return;
-                            }
-                        }
                         parts[0] = parts[0].replace(/^(Mudae|Mudatest|Mudamaid2): /g,'');
                         parts[1] = parts[1].replaceAll("<", "").replaceAll(">", "");
+                        if(!(parts[1].includes(".png")||parts[1].includes(".gif"))) {
+                            parts[1]+=".png";
+                        }
                         parts[2] = parts[1];
                         if(parts[1].includes("mudae.net")) {
                             let index_img = parts[1].split("~")[1];
-                            //parts[1] = index_img.length > 12 ? "https://cdn.imgchest.com/files/" + index_img : "https://i.imgur.com/" + index_img;
                             parts[3] = index_img.split(".")[0];
                         } else {
-                            parts[3] = parts[1].match(/\/([^\/]+)\.\w+($| )/)[1];
+                            parts[3] = parts[1].match(/\/([^\/]+)(?:\.\w+)?$/)[1];
                         }
                         if(isNaN(parts[0])) {
                             sort_by_numbers = false;
