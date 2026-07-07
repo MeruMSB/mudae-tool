@@ -235,6 +235,7 @@
                 for(let index in textarea_value) {
                     if(typeof index=="undefined") continue;
                     let value = textarea_value[index];
+                    if(value.pic.match(/imgur|imgchest|mudae/)==null) continue;
             
                     let dataId = crypto.randomUUID();
                     ids[dataId] = {
