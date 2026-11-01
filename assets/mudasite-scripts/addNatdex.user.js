@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Add NATIONAL DEX number
 // @namespace    http://tampermonkey.net/
-// @version      2025-09-20
+// @version      2025-11-01
 // @description  
 // @author       MerúM
 // @match        https://mudae.net/character/*
@@ -26,5 +26,4 @@
             }
         }
     }
-    console.log("test")
 })();
